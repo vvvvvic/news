@@ -1,0 +1,16 @@
+<view class="title">
+  {{newsDetails.title}}
+</view>
+
+<view class="publisher-info">
+  <image class="face" src="{{newsDetails.publisherFace}}"></image>
+  <view class="words">
+   <view class="nickName">{{newsDetails.publisher}}</view>
+   <view class="normal-info">
+    <view class="original">原创</view>
+    <view class="create-time">发布于 {{newsDetails.createTime}}</view>
+   </view>
+  </view>
+</view>
+
+<rich-text class="news-desc" nodes="{{newsDetails.content}}"></rich-text>

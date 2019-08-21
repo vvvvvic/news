@@ -1,0 +1,60 @@
+<scroll-view scroll-x="true" class="types">
+  <view wx:for="{{titleBar}}" 
+        wx:key="{{index}}" 
+        data-typeid="{{item.id}}"
+        data-index="{{index}}"  
+        bindtap="switchNews" 
+        class="scroll-view-item {{index===defaultTypeIndex?'scroll-view-color':'scroll-view-empty'}}">
+          {{item.name}}
+  </view>
+</scroll-view>
+
+<block wx:for="{{newsList}}" wx:key="{{index}}" wx:if="{{newsList.length !== 0}}">
+  <view data-newsid="{{item.id}}" bindtap='showDetail'>
+  <!-- 纯文字新闻列表 -->
+  <view wx:if="{{item.imgType===0}}" class="news">
+    <view class="news-title">{{item.title}}</view>
+    <view class="publish">
+      <view class="publisher">{{item.publisher}}</view>
+      <view class="create-time">{{item.createTime}}</view>
+    </view>
+  </view>
+
+  <!-- 三图新闻列表 -->
+  <view class="news"  wx:if="{{item.imgType===3}}">
+    <view class="news-title">{{item.title}}</view>
+    <view class="img-set">
+      <image wx:for="{{item.coverImg}}" 
+             wx:key="{{index}}" 
+             src="{{item}}" 
+             class="cover">
+      </image>
+    </view>
+    <view class="publish">
+      <view class="publisher">{{item.publisher}}</view>
+      <view class="create-time">{{item.createTime}}</view>
+    </view>
+  </view>
+
+  <!-- 单图新闻列表 -->
+  <view class="news"  wx:if="{{item.imgType===1}}">
+    <view class="pic-words">
+      <view class="title-words">{{item.title}}</view>
+      <image src="{{item.coverImg[0]}}" class="cover"></image>
+    </view>
+    <view class="publish">
+      <view class="publisher">{{item.publisher}}</view>
+      <view class="create-time">{{item.createTime}}</view>
+    </view>
+  </view>
+  </view>
+</block>
+
+<view wx:if="{{newsList.length === 0}}" class="emptyImgBox">
+  <view>
+    <image src="/pages/imgs/empty.png" class="emptyImg"></image>
+  </view>
+  <view class='emptyText'>
+    暂无数据
+  </view>
+</view>
